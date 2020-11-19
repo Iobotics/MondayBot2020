@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.SparkMax;
 
@@ -31,9 +33,33 @@ public class DriveTrain extends SubsystemBase {
     leftLeader.configFactoryDefault();
     rightFollower.configFactoryDefault();
     rightLeader.configFactoryDefault();
+
+    //set if inverted
+    leftLeader.setInverted(false);
+    rightLeader.setInverted(false);
+    leftFollower.setInverted(false);
+    rightFollower.setInverted(false);
+
+    //set motors to follow
+    leftFollower.follow(leftLeader);
+    rightFollower.follow(rightLeader);
+
+    //set deadban
+    leftFollower.configNeutralDeadband(0);
+    rightFollower.configNeutralDeadband(0);
+
+    //neutralMode to brake
+    leftFollower.setNeutralMode(NeutralMode.Brake);
+    rightFollower.setNeutralMode(NeutralMode.Brake);
+    leftLeader.setNeutralMode(NeutralMode.Brake);
+    rightLeader.setNeutralMode(NeutralMode.Brake);
+
     }
     
-  
+    public void stop(){
+      leftLeader.set(ControlMode.PercentOutput, 0);
+      rightLeader.set(ControlMode.PercentOutput, 0);
+    } 
 
   @Override
   public void periodic() {
