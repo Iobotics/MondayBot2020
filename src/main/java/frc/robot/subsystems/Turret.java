@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -35,6 +38,7 @@ public class Turret extends SubsystemBase {
     return turret.getActiveTrajectoryPosition();
   }
 
+
   public void stop(){
       turret.set(ControlMode.PercentOutput, 0);
     }
@@ -43,4 +47,24 @@ public class Turret extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void setTurret(double power) {
+    turret.set(ControlMode.PercentOutput, power);
+  }
+
+  public void stopTurret() {
+    turret.set(ControlMode.Velocity, 0);
+  }
+
+  public void setStart() {
+    turret.set(ControlMode.Position, 90);
+  
+  }
+
+  public Integer getMotorPosition(){
+    return turret.getActiveTrajectoryPosition();
+  }
+  
+
 }
+
