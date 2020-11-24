@@ -20,4 +20,5 @@ public final class Constants {
     public static int kleftLeader = 1;
     public static int krightFollower = 1;
     public static int krightLeader = 1;
+	public static int kturret;
 }
