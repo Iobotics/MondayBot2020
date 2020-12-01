@@ -11,9 +11,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //import com.revrobotics.SparkMax;
 
 //import edu.wpi.first.wpilibj.Talon;
@@ -21,49 +21,48 @@ import frc.robot.Constants;
 
 public class Turret extends SubsystemBase {
 
-  private TalonSRX turret;
+  private final TalonSRX turret;
 
   public Turret() {
     turret = new TalonSRX(Constants.kturret);
 
-    //set motors to default
+    // set motors to default
     turret.configFactoryDefault();
+    
+    // set motor spin direction
+    turret.setInverted(false);
 
-    //neutralMode to brake
+    // neutralMode to brake
     turret.setNeutralMode(NeutralMode.Brake);
 
   }
 
-  public int getTurret () {
+  // return the trajectory of the turret
+  public int getTurret() {
     return turret.getActiveTrajectoryPosition();
   }
 
+  // set power for motor
+  public void setTurret(double power) {
+    turret.set(ControlMode.PercentOutput, power);
+  }
 
-  public void stop(){
-      turret.set(ControlMode.PercentOutput, 0);
-    }
+  //stops the motor
+  public void stopTurret() {
+    turret.set(ControlMode.PercentOutput, 0);
+  }
+
+  // set the start position
+  public void setStart() {
+    turret.set(ControlMode.Position, 0);
+  
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
 
-  public void setTurret(double power) {
-    turret.set(ControlMode.PercentOutput, power);
-  }
-
-  public void stopTurret() {
-    turret.set(ControlMode.Velocity, 0);
-  }
-
-  public void setStart() {
-    turret.set(ControlMode.Position, 90);
-  
-  }
-
-  public Integer getMotorPosition(){
-    return turret.getActiveTrajectoryPosition();
-  }
   
 
 }
