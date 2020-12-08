@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 //import com.revrobotics.SparkMax;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 //import edu.wpi.first.wpilibj.Talon;
 import frc.robot.Constants;
@@ -28,7 +29,7 @@ public class Turret extends SubsystemBase {
 
     // set motors to default
     turret.configFactoryDefault();
-    
+
     // set motor spin direction
     turret.setInverted(false);
 
@@ -47,7 +48,7 @@ public class Turret extends SubsystemBase {
     turret.set(ControlMode.PercentOutput, power);
   }
 
-  //stops the motor
+  // stops the motor
   public void stopTurret() {
     turret.set(ControlMode.PercentOutput, 0);
   }
@@ -55,7 +56,11 @@ public class Turret extends SubsystemBase {
   // set the start position
   public void setStart() {
     turret.set(ControlMode.Position, 0);
-  
+
+  }
+
+  public int getAngle() {
+    return turret.getSensorCollection().getAnalogInRaw();
   }
 
   @Override
