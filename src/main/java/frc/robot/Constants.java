@@ -17,8 +17,8 @@ package frc.robot;
  */
 public final class Constants {
     public static int kleftFollower = 1;
-    public static int kleftLeader = 1;
-    public static int krightFollower = 1;
-    public static int krightLeader = 1;
-	public static int kturret;
+    public static int kleftLeader = 2;
+    public static int krightFollower = 3;
+    public static int krightLeader = 4;
+	public static int kturret = 9;
 }

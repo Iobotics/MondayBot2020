@@ -29,6 +29,8 @@ public class rotateTurret extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    bastion.setTurret(.1);
+    
 
     
     
