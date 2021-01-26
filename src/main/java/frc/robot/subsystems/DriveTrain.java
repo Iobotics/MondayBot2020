@@ -61,8 +61,15 @@ public class DriveTrain extends SubsystemBase {
       rightLeader.set(ControlMode.PercentOutput, 0);
     } 
 
+    public void setTank(double leftPower, double rightPower){
+      leftLeader.set(ControlMode.PercentOutput, leftPower);
+      rightLeader.set(ControlMode.PercentOutput, rightPower);
+    }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+
 }
